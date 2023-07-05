@@ -11,12 +11,20 @@ class CommandHelp(str, Enum):
     Short description of commands to show on help section.
     """
 
-    INVENTORY: str = "Show a list of products in stock."
-    SALES: str = "Show a list of sales."
-    SELL: str = "Record a sale."
-    ADD: str = "Add a product to the inventory."
+    STOCK: str = "Manage inventory. List, Add, Update and Delete items."
+    STORE: str = "Manage sales. List, Add, Update and Delete sale records."
     REPORT: str = "Show report of sales."
-    RESTOCK: str = "Update inventory."
+
+    ADD_SALE: str = "Add a sale record."
+    UPDATE_SALE: str = "Update a sale record."
+    DELETE_SALE: str = "Delete a sale record."
+
+    ADD_ITEM: str = "Add an item."
+    UPDATE_ITEM: str = "Update an item."
+    DELETE_ITEM: str = "Delete an item."
+
+    LIST_ITEMS: str = "List items in stock."
+    LIST_SALES: str = "List sale records."
 
 
 class ArgsHelp(str, Enum):
@@ -24,10 +32,20 @@ class ArgsHelp(str, Enum):
     Short description of arguments required for commands.
     """
 
-    NAME: str = "Name the item"
-    TAG: str = "Tag or category"
-    COST: str = "Cost of item"
-    PRICE: str = "Sell price"
+    NAME: str = "Name"
+    TAG: str = "Tag"
+    COST: str = "Cost"
+    PRICE: str = "Price"
     QTY: str = "Quantity"
-    DATE: str = "Date. E.g: YYYY-MM-DD"
-    PRODUCT: str = "Select product"
+    DATE: str = "Date. E.g: {}"
+    ITEM: str = "Select item"
+    SALE: str = "Select record"
+
+
+class Prompt(str, Enum):
+    """
+    Prompt to user.
+    """
+
+    CONFIRM: str = "Confirm to apply changes"
+    NO_CHANGE: str = "[green]No change applied!"
