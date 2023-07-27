@@ -20,12 +20,18 @@ def show_products(products: List[Product]) -> None:
     if not products:
         rich_print("No products in database!")
     table = Table(show_header=True, box=box.ROUNDED, title="Inventory")
+    out_of_stock = Table(show_header=True, box=box.ROUNDED, title="Out of stock")
     cols = ("QTY", "NAME", "COST", "PRICE")
     for col in cols:
         table.add_column(col)
+        out_of_stock.add_column(col)
     for item in products:
-        table.add_row(str(item.qty), item.name, str(item.cost), str(item.price))
+        if item.qty == 0:
+            out_of_stock.add_row(str(item.qty), item.name, str(item.cost), str(item.price))
+        else:
+            table.add_row(str(item.qty), item.name, str(item.cost), str(item.price))
     rich_print(table)
+    rich_print(out_of_stock)
 
 
 def show_full_product(item: Product) -> None:
