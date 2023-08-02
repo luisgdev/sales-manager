@@ -62,6 +62,7 @@ def show_sales(sales: List[Sale]) -> None:
     :return: None
     """
     earnings: float = 0
+    volume: float = 0
     if not sales:
         rich_print("No sales in database!")
     table = Table(show_header=True, box=box.ROUNDED, title="Sales")
@@ -80,8 +81,10 @@ def show_sales(sales: List[Sale]) -> None:
             f"{profit:.2f}",
         )
         earnings += profit
+        volume += item.qty * item.sell_price
     rich_print(table)
     rich_print(f" * Total earned: [green]{earnings:.2f}")
+    rich_print(f" * Total sold: [green]{volume:.2f}")
 
 
 def show_full_sale(entry: Sale) -> None:
