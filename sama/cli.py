@@ -75,11 +75,12 @@ def create_sale() -> None:
         questions=[
             inquirer.List(name="product", message=ArgsHelp.ITEM, choices=choices),
             inquirer.Text(name="price", message=ArgsHelp.PRICE),
-            inquirer.Text(name="qty", message=ArgsHelp.QTY),
+            inquirer.Text(name="qty", message=ArgsHelp.QTY + "(1)"),
             inquirer.Text(name="date", message=ArgsHelp.DATE.format(date)),
         ]
     )
     date = date if not form["date"] else form["date"]
+    qty = 1 if not form["qty"] else form["qty"]
     product = form["product"]
     sale = Sale(
         date=date,
@@ -87,7 +88,7 @@ def create_sale() -> None:
         product_name=product.name,
         sell_price=float(form["price"]),
         cost=float(product.cost),
-        qty=int(form["qty"]),
+        qty=int(qty),
     )
     view.rich_print("[green]The following sale will be created.")
     view.show_full_sale(sale)
